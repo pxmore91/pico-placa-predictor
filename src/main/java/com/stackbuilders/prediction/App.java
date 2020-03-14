@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        System.out.println("Welcome to the \"Pico y Placa\" predictor program");
+        System.out.println("You will need to provide some information in order to know if your car can or cannot be on the roadjava -cp target/prediction-1.0.jar com.stackbuilders.prediction.App");
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Insert the plate:");
