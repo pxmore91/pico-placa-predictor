@@ -1,8 +1,8 @@
 # Pico & Placa Predictor
-This project allows to predict whether the a car can be on the road based on the "Pico y Placa" policy that restrict cars to be on the road depending on the last number of the plate.
-The policy is active during weekdays excluding weekends on a schedule during peak hours.
+This project allows predicting whether a car can be on the road based on the "Pico y Placa" policy that restricts cars to be on the road depending on the last number of the plate. 
+The policy is active during peak hours on weekdays based on a schedule.
 
-The current configuration restrict vehicles based on the following schedule:
+The current configuration restricts vehicles based on the following schedule:
 
 Restriction | Schedule
 -----------|---------
@@ -11,7 +11,7 @@ Afternoon-evening | 16:00-19:30
 
 
 
-And the following last plates numbers based on the day:
+And the following last numbers of the plates based on the day:
 
 Day  | Restricted Last Numbers
 ---- | -------------
@@ -21,9 +21,29 @@ Wednesday | 5,6
 Thursday | 7,8
 Friday | 9,0
 
+## How to run
+
+In order to run the project, you need the JDK 8 and Maven installed on your computer.
+If you have the minimum requirements then you need to download or clone the repository.
+Open a command prompt and then navigate to the project folder. 
+Next, execute the following command to compile the code:
+
+```cmd
+mvn clean install
+```
+
+This command will invoke maven to test and build the project.
+
+Once the project has been successfully build, you need to execute the following command to run the project:
+
+```cmd
+java -cp target/prediction-1.0.jar com.stackbuilders.prediction.App
+```
+
 
 
 ##Configuration
+
 The configuration of the restricted times, days and plates is based on an XML configuration file named "PicoPlacaConfig.xml".
 
 If you want to modify the restricted hours you should modify the content of the "restrictedTime" nodes.
@@ -32,7 +52,7 @@ HH:mm-HH:mm
 
 You should not overlap the times in different restricted time ranges.
 
-Moreover, you can modify the banned last numbers of the plates per day. For this, you need to change the values in the "numbers" nodes of each day. You can also add new days with another restricted plate numbers.
+Moreover, you can modify the banned last numbers of the plates per day. For this, you need to change the values in the "numbers" nodes of each day. You can also add new days with other restricted plate numbers.
 
 To add a new restricted day and plate numbers you need to add a node "restriction" with a property "dayNumber" which indicates the number of the day to apply the restriction. Each day is mapped to a number as follows:
 
@@ -48,7 +68,7 @@ Sunday | 7
 
 Also, the node "restriction" needs a nested node "numbers" which content indicates the restricted last numbers of the plates separated by commas.
 
-Example of adding a new day restriction on Saturday for plates ending in 1,3,5
+Example for adding a new day restriction on Saturday for plates ending in 1,3,5
 
 ```xml
 <restriction dayNumber="6">
@@ -59,6 +79,6 @@ Example of adding a new day restriction on Saturday for plates ending in 1,3,5
 Finally, if you modify the configuration file, you should also update some test to avoid them failing.
 
 ##Technical Information
-The project was developed using Java 8 and Junit 4 for the unit tests.
 
-## 
+The project was developed using Java 8, Junit 4 for the unit tests and Maven for build automation.
+
