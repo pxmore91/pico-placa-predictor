@@ -29,7 +29,7 @@ Open a command prompt and then navigate to the project folder.
 Next, execute the following command to compile the code:
 
 ```cmd
-mvn clean install
+mvn package
 ```
 
 This command will invoke maven to test and build the project.
@@ -76,9 +76,12 @@ Example for adding a new day restriction on Saturday for plates ending in 1,3,5
 </restriction>
 ```
 
-Finally, if you modify the configuration file, you should also update some test to avoid them failing.
+Finally, if you modify the configuration file, you should also update the test case(s) affected by the change to avoid build failure due to test failures.
 
 ## Technical Information
 
 The project was developed using Java 8, Junit 4 for the unit tests and Maven for build automation.
+
+## Extras
+You can find the flow chart of the program on the following url: **https://bit.ly/2wZqMTb**
 
