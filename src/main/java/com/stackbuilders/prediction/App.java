@@ -15,11 +15,10 @@ public class App {
             Date date = PicoPlaca.validateDateFormat(scanner.nextLine());
             System.out.println("Insert the time (HH:mm):");
             Date time = PicoPlaca.validateTimeFormat(scanner.nextLine());
-            PicoPlaca picoplaca = new PicoPlaca(plate,date,time);
+            PicoPlaca picoplaca = new PicoPlaca(plate, date, time);
             String prediction = picoplaca.validate();
-            System.out.println(prediction);
-        }
-        catch (Exception e){
+            System.out.println("====> Prediction: " + prediction);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
