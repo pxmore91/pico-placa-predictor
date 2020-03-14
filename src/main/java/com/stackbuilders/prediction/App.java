@@ -3,8 +3,7 @@ package com.stackbuilders.prediction;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Main {
-
+public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
@@ -21,7 +20,5 @@ public class Main {
         catch (Exception e){
             System.out.println(e.getMessage());
         }
-
-
     }
 }

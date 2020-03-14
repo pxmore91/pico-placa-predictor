@@ -9,9 +9,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -75,12 +74,11 @@ public class PicoPlaca {
     }
 
     private void loadConfigurations() throws Exception {
-        URI uri = new URI(PicoPlaca.class.getResource("PicoPlacaConfig.xml").toString());
-        File file = new File(uri.getPath());
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("config/PicoPlacaConfig.xml");
         DocumentBuilderFactory documentBF = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder documentB = documentBF.newDocumentBuilder();
-            Document document = documentB.parse(file);
+            Document document = documentB.parse(inputStream);
 
             NodeList restrictions = document.getElementsByTagName("restriction");
 

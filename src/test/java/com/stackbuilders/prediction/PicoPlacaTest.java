@@ -7,7 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PicoPlacaTest {
     static final String DATE_PATTERN = "dd-MM-yyyy";
