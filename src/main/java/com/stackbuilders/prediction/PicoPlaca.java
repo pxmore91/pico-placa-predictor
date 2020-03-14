@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,7 +29,7 @@ public class PicoPlaca {
         this.dateToValidate = dateToValidate;
         this.timeToValidate = timeToValidate;
         this.plateToValidate = plateToValidate;
-        this.restrictedNumbers = new HashMap<> ();
+        this.restrictedNumbers = new HashMap<>();
         this.restrictedTimes = new ArrayList<>();
         this.loadConfigurations();
     }
@@ -55,15 +56,16 @@ public class PicoPlaca {
     public String validate() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.dateToValidate);
-        if(calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY &&
-                calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY){
-            String restrictedPlateNumbers = this.restrictedNumbers.get(calendar.get(Calendar.DAY_OF_WEEK)-1);
-            for (int i = 0; i < this.restrictedTimes.size(); i+=2) {
+        if (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY &&
+                calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            int currentDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            String restrictedPlateNumbers = this.restrictedNumbers.get(currentDay == 0 ? 7 : currentDay);
+            for (int i = 0; i < this.restrictedTimes.size(); i += 2) {
                 Date startTime = this.restrictedTimes.get(i);
-                Date endTime = this.restrictedTimes.get(i+1);
-                if((this.timeToValidate.equals(startTime)  || this.timeToValidate.after(startTime)) &&
-                        (this.timeToValidate.equals(endTime)  || this.timeToValidate.before(endTime))){
-                    if(restrictedPlateNumbers.contains(Integer.toString(plateToValidate.getLastNumber()))) {
+                Date endTime = this.restrictedTimes.get(i + 1);
+                if ((this.timeToValidate.equals(startTime) || this.timeToValidate.after(startTime)) &&
+                        (this.timeToValidate.equals(endTime) || this.timeToValidate.before(endTime))) {
+                    if (restrictedPlateNumbers.contains(Integer.toString(plateToValidate.getLastNumber()))) {
                         return ("The car CANNOT be on the road");
                     }
                 }
@@ -73,8 +75,8 @@ public class PicoPlaca {
     }
 
     private void loadConfigurations() throws Exception {
-
-        File file = new File(PicoPlaca.class.getResource("PicoPlacaConfig.xml").getFile());
+        URI uri = new URI(PicoPlaca.class.getResource("PicoPlacaConfig.xml").toString());
+        File file = new File(uri.getPath());
         DocumentBuilderFactory documentBF = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder documentB = documentBF.newDocumentBuilder();

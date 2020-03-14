@@ -3,23 +3,18 @@
 <PicoPlaca>
     <restrictions>
         <restriction dayNumber="1">
-            <day>MONDAY</day>
             <numbers>1,2</numbers>
         </restriction>
         <restriction dayNumber="2">
-            <day>TUESDAY</day>
             <numbers>3,4</numbers>
         </restriction>
         <restriction dayNumber="3">
-            <day>WEDNESDAY</day>
             <numbers>5,6</numbers>
         </restriction>
         <restriction dayNumber="4">
-            <day>THURSDAY</day>
             <numbers>7,8</numbers>
         </restriction>
         <restriction dayNumber="5">
-            <day>FRIDAY</day>
             <numbers>9,0</numbers>
         </restriction>
     </restrictions>
