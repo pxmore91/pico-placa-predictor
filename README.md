@@ -42,7 +42,7 @@ java -cp target/prediction-1.0.jar com.stackbuilders.prediction.App
 
 
 
-##Configuration
+## Configuration
 
 The configuration of the restricted times, days and plates is based on an XML configuration file named "PicoPlacaConfig.xml".
 
@@ -78,7 +78,7 @@ Example for adding a new day restriction on Saturday for plates ending in 1,3,5
 
 Finally, if you modify the configuration file, you should also update some test to avoid them failing.
 
-##Technical Information
+## Technical Information
 
 The project was developed using Java 8, Junit 4 for the unit tests and Maven for build automation.
 
